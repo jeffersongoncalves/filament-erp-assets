@@ -19,7 +19,7 @@
     ],
     "require": {
         "php": "^8.2",
-        "filament/filament": "^4.0",
+        "filament/filament": "^5.3",
         "jeffersongoncalves/filament-erp-core": "3.x-dev",
         "jeffersongoncalves/laravel-erp-assets": "dev-main",
         "spatie/laravel-package-tools": "^1.14.0"
