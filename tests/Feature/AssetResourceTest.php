@@ -1,6 +1,5 @@
 <?php
 
-use Filament\Actions\Testing\TestAction;
 use JeffersonGoncalves\Erp\Accounting\Models\Account;
 use JeffersonGoncalves\Erp\Accounting\Models\GlEntry;
 use JeffersonGoncalves\Erp\Assets\Enums\DepreciationMethod;
@@ -85,7 +84,7 @@ it('submits an asset through the UI and builds its depreciation schedule', funct
     $asset = makeAsset();
 
     Livewire::test(ListAssets::class)
-        ->callAction(TestAction::make('submit')->table($asset));
+        ->callTableAction('submit', $asset);
 
     $asset->refresh();
 
@@ -99,13 +98,13 @@ it('posts depreciation for a submitted asset through the UI, writing balanced GL
     $asset = makeAsset();
 
     Livewire::test(ListAssets::class)
-        ->callAction(TestAction::make('submit')->table($asset));
+        ->callTableAction('submit', $asset);
 
     expect($asset->refresh()->docstatus)->toBe(DocStatus::Submitted)
         ->and($asset->depreciationSchedules)->toHaveCount(12);
 
     Livewire::test(ListAssets::class)
-        ->callAction(TestAction::make('postDepreciation')->table($asset), data: [
+        ->callTableAction('postDepreciation', $asset, [
             'upto' => '2030-01-01',
         ]);
 
