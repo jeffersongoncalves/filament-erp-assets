@@ -2,8 +2,10 @@
 
 namespace JeffersonGoncalves\FilamentErp\Assets\Resources\AssetCategories;
 
-use Filament\Forms\Form;
+use BackedEnum;
 use Filament\Resources\Resource;
+use Filament\Schemas\Schema;
+use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use JeffersonGoncalves\Erp\Assets\Support\ModelResolver;
 use JeffersonGoncalves\FilamentErp\Assets\FilamentErpAssetsPlugin;
@@ -15,7 +17,7 @@ use JeffersonGoncalves\FilamentErp\Assets\Resources\AssetCategories\Tables\Asset
 
 class AssetCategoryResource extends Resource
 {
-    protected static ?string $navigationIcon = 'heroicon-o-tag';
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedTag;
 
     protected static ?int $navigationSort = 1;
 
@@ -35,9 +37,9 @@ class AssetCategoryResource extends Resource
         }
     }
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return AssetCategoryForm::configure($form);
+        return AssetCategoryForm::configure($schema);
     }
 
     public static function table(Table $table): Table

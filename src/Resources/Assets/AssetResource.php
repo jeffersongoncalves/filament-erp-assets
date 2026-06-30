@@ -2,8 +2,10 @@
 
 namespace JeffersonGoncalves\FilamentErp\Assets\Resources\Assets;
 
-use Filament\Forms\Form;
+use BackedEnum;
 use Filament\Resources\Resource;
+use Filament\Schemas\Schema;
+use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use JeffersonGoncalves\Erp\Assets\Support\ModelResolver;
 use JeffersonGoncalves\FilamentErp\Assets\FilamentErpAssetsPlugin;
@@ -16,7 +18,7 @@ use JeffersonGoncalves\FilamentErp\Assets\Resources\Assets\Tables\AssetsTable;
 
 class AssetResource extends Resource
 {
-    protected static ?string $navigationIcon = 'heroicon-o-building-office-2';
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedBuildingOffice2;
 
     protected static ?int $navigationSort = 10;
 
@@ -36,9 +38,9 @@ class AssetResource extends Resource
         }
     }
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return AssetForm::configure($form);
+        return AssetForm::configure($schema);
     }
 
     public static function table(Table $table): Table

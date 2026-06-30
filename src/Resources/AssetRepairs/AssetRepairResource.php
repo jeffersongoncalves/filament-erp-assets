@@ -2,8 +2,10 @@
 
 namespace JeffersonGoncalves\FilamentErp\Assets\Resources\AssetRepairs;
 
-use Filament\Forms\Form;
+use BackedEnum;
 use Filament\Resources\Resource;
+use Filament\Schemas\Schema;
+use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use JeffersonGoncalves\Erp\Assets\Support\ModelResolver;
 use JeffersonGoncalves\FilamentErp\Assets\FilamentErpAssetsPlugin;
@@ -15,7 +17,7 @@ use JeffersonGoncalves\FilamentErp\Assets\Resources\AssetRepairs\Tables\AssetRep
 
 class AssetRepairResource extends Resource
 {
-    protected static ?string $navigationIcon = 'heroicon-o-wrench-screwdriver';
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedWrenchScrewdriver;
 
     protected static ?int $navigationSort = 30;
 
@@ -35,9 +37,9 @@ class AssetRepairResource extends Resource
         }
     }
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return AssetRepairForm::configure($form);
+        return AssetRepairForm::configure($schema);
     }
 
     public static function table(Table $table): Table
