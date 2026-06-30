@@ -2,9 +2,10 @@
 
 namespace JeffersonGoncalves\FilamentErp\Assets\Concerns;
 
+use Filament\Actions\Action;
 use Filament\Forms\Components\DatePicker;
 use Filament\Notifications\Notification;
-use Filament\Tables\Actions\Action;
+use Filament\Support\Icons\Heroicon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
 use JeffersonGoncalves\Erp\Assets\Models\Asset;
@@ -26,10 +27,10 @@ trait PostsAssetDepreciation
     {
         return Action::make('postDepreciation')
             ->label('Post Depreciation')
-            ->icon('heroicon-o-banknotes')
+            ->icon(Heroicon::OutlinedBanknotes)
             ->color('primary')
             ->visible(fn (Model $record): bool => $record->getAttribute('docstatus') === DocStatus::Submitted)
-            ->form([
+            ->schema([
                 DatePicker::make('upto')
                     ->label('Post up to')
                     ->default(fn (): Carbon => Carbon::now())

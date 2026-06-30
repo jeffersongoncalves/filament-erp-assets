@@ -2,8 +2,10 @@
 
 namespace JeffersonGoncalves\FilamentErp\Assets\Resources\AssetMovements;
 
-use Filament\Forms\Form;
+use BackedEnum;
 use Filament\Resources\Resource;
+use Filament\Schemas\Schema;
+use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use JeffersonGoncalves\Erp\Assets\Support\ModelResolver;
 use JeffersonGoncalves\FilamentErp\Assets\FilamentErpAssetsPlugin;
@@ -15,7 +17,7 @@ use JeffersonGoncalves\FilamentErp\Assets\Resources\AssetMovements\Tables\AssetM
 
 class AssetMovementResource extends Resource
 {
-    protected static ?string $navigationIcon = 'heroicon-o-arrows-right-left';
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedArrowsRightLeft;
 
     protected static ?int $navigationSort = 20;
 
@@ -35,9 +37,9 @@ class AssetMovementResource extends Resource
         }
     }
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return AssetMovementForm::configure($form);
+        return AssetMovementForm::configure($schema);
     }
 
     public static function table(Table $table): Table
